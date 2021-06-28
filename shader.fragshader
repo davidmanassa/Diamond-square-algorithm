@@ -1,0 +1,16 @@
+#version 330 core
+
+in vec3 normal;
+in vec3 light;
+in float yval;
+
+out vec3 color;
+
+void main() {
+
+	float lightPow = 6;
+	float cosTheta = clamp( dot( normalize(normal),normalize(light)), 0,1 );
+
+	color = vec3(yval, 1.0-yval, 0.0).rgb * lightPow * (cosTheta + 0.1) / (length(light) * length(light));
+
+}	
